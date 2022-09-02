@@ -2,65 +2,186 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 
 <body>
-    <script>
-        // let obj = {
-        //     name: "张三",
-        //     age: 25,
-        //     address: "深圳",
-        //     getName: function () {}
-        // }
-        // // console.log(Object.keys(obj))
+  <script>
+    // let obj = {
+    //     name: "张三",
+    //     age: 25,
+    //     address: "深圳",
+    //     getName: function () {}
+    // }
+    // // console.log(Object.keys(obj))
 
-        // // let arr = [1, 2, 3, 4, 5, 6]
-        // // console.log(Object.keys(arr))
+    // // let arr = [1, 2, 3, 4, 5, 6]
+    // // console.log(Object.keys(arr))
 
-        // // let str = "saasd字符串"
-        // // console.log(Object.keys(str))
-
-
-        // for (key in obj) {
-        //     console.log(obj[key]);
-        // }
+    // // let str = "saasd字符串"
+    // // console.log(Object.keys(str))
 
 
-        // let options={
-
-        // }
-
-        // console.log(0.1+0.2==0.3);
-
-        // let mapGetters
-
-        // console.log(typeof(mapGetters));
-
-        // console.log(typeof undefined);
-//         let obj={
-//   name:'xiaowang',
-//   age:18
-// }
-
-// for(item in obj){
-// //   console.log(item.value);
-// // console.log(obj[item]);
-// }
-
-let obj={
-  name:'xiaowang',
-  age:18,
-
-}
+    // for (key in obj) {
+    //     console.log(obj[key]);
+    // }
 
 
-console.log(Reflect.ownKeys(obj));
+    // let options={
+
+    // }
+
+    // console.log(0.1+0.2==0.3);
+
+    // let mapGetters
+
+    // console.log(typeof(mapGetters));
+
+    // console.log(typeof undefined);
+    //         let obj={
+    //   name:'xiaowang',
+    //   age:18
+    // }
+
+    // for(item in obj){
+    // //   console.log(item.value);
+    // // console.log(obj[item]);
+    // }
+
+    // let obj={
+    //   name:'xiaowang',
+    //   age:18,
+
+    // }
+    function quicksort(arr) {
+
+      // 如果数组为空数组或者只有一个值，则直接返回
+      if (arr.length <= 1) {
+        return arr
+      }
+
+      var left = []
+
+      var right = []
 
 
+      var mid = Math.floor(arr.length / 2)
+
+      var midValue = arr.splice(mid, 1) //找到中间数的值
+
+
+      for (var i = 0; i < arr.length; i++) {
+        if (arr[i] < midValue) {
+          left.push(arr[i])
+        } else {
+          right.push(arr[i])
+        }
+      }
+
+      return quicksort(left).concat(midValue, quicksort(right))
+
+    }
+
+    function bubleSort(arr) {
+      var len = arr.length
+
+      for (outer = len; outer >= 2; outer--) {
+        for (inner = 0; inner <= outer - 1; inner++) {
+          if (arr[inner] > arr[inner + 1]) {
+            let temp = arr[inner]
+            arr[inner] = arr[inner + 1]
+            arr[inner + 1] = temp
+          }
+        }
+      }
+
+
+      return arr;
+    }
+
+
+    function easyBubbleSort(arr) {
+      let len = arr.length
+      for (let outer = len; outer >= 2; outer--) {
+        for (let inner = 0; inner <= outer - 1; inner++) {
+          if (arr[inner] > arr[inner + 1]) {
+            [arr[inner], arr[inner + 1]] = [arr[inner + 1], arr[inner]]
+          }
+        }
+      }
+
+      return arr
+    }
+
+
+    function selectSort(arr) {
+      let len = arr.length;
+
+      for (let outer = 0; outer < len - 1; outer++) {
+        for (let inner = outer; inner < len; inner++) {
+          if (arr[inner] < arr[outer]) {
+            [arr[inner], arr[outer]] = [arr[outer], arr[inner]]
+          }
+        }
+      }
+
+      return arr
+    }
+
+
+    function insertSort(arr) {
+      for (let i = 1; i < arr.length; i++) {
+        for (let j = i; j > 0; j--) {
+          if (arr[j] < arr[j - 1]) {
+            [arr[j], arr[j - 1]] = [arr[j - 1], arr[j]]
+          }
+        }
+      }
+      return arr
+    }
+
+    function shellSort(arr, gap) {
+      for (let i = 0; i < gap.length; i++) {
+        let n = gap[i] //步长
+
+        for (let j = i + n; j < arr.length; j++) {
+          for (let k = j; k > 0; k -= n) {
+            if (arr[k] < arr[k - n]) {
+              [arr[k], arr[k - n]] = [arr[k - n], arr[k]]
+            } else {
+              continue;
+            }
+          }
+        }
+      }
+
+      return arr
+
+    }
+
+    // console.log(Reflect.ownKeys(obj));
+
+    let arr = [3, 2, 4, 1, 6, 3, 7, 3]
+
+    // console.log(arr.splice((arr.length/2),1));
+
+    // console.log(arr);
+
+    // let arr1=[1]
+
+
+
+
+
+    // var newArr = shellSort(arr, [3, 2, 1])
+    // console.log(newArr);
+
+
+    let str = '123'
+    console.log(+str);
   </script>
 
 

@@ -1337,3 +1337,182 @@ proxy
 
 ## Vue的理解
 
+
+
+
+## 作用域链
+
+
+作用域链的作用是保证有权访问执行环境的变量和函数的有序访问，作用域链的变量只能向上访问，一直访问到window对象为止，不能向下访问
+TODO:
+
+
+
+## web Worker 和webSocket
+
+
+TODO:
+
+## 栈和队列
+区别：
+- 栈的插入和删除的操作都在一端进行，队列的插入删除操作分别在两端进行
+- 栈先入后出，队列先入先出
+- 栈只允许在表尾进行删除插入的操作，队列只允许在表尾插入，在表头删除
+
+## 快排
+
+思路：
+1. 在数据中找到一个基准点（一般为中点）
+2. 建立两个数组，分别储存左边和右边的数组
+3. 比基准点小的数放左边数组，比基准点大的数放右边数组
+4. 递归左右数组，并与基准点拼成一个新数组，基准点在中间
+
+```javascript
+ function quicksort(arr) {
+
+    // 如果数组为空数组或者只有一个值，则直接返回
+    if (arr.length <= 1) {
+        return arr
+    }
+
+    var left = []
+
+    var right = []
+
+
+    var mid = Math.floor(arr.length / 2)
+
+    var midValue = arr.splice(mid, 1) //找到中间数的值
+
+
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i] < midValue) {
+            left.push(arr[i])
+        } else {
+            right.push(arr[i])
+        }
+    }
+
+    return quicksort(left).concat(midValue, quicksort(right))
+
+}
+```
+
+
+## js继承方式
+
+TODO:
+
+
+## 冒泡排序
+逐个比较
+第一个和第二个数比较，如果前面的大于后面的就交换位置，然后第二个和第三个比较，如果前面的大于后面的就交换位置，一直到倒数第二个和倒数第一个比较，这是第一次
+
+然后再重头开始第一个数和第二个数比较，如果前面的大于后面的就交换位置，一直到倒数第三个数和倒数第二个数进行比较
+
+然后依次循环比较
+
+```javascript
+function bubbleSort(arr){
+  let len=arr.length
+  for (outer=len; outer<=2;outer--){
+    for (inner=0;inner>=outer-1;inner++){
+      if(arr[inner]>arr[inner+1]){
+        let temp=arr[inner]
+        arr[inner]=arr[inner+1]
+        arr[inner+1]=temp
+      }
+    }
+  }
+
+  return arr
+}
+
+
+
+// 简便方法
+function easyBubbleSort(arr){
+  let len=arr.length;
+
+  for (let outer=len;outer>=2;outer--){
+    for (let inner=0;inner<outer-1;inner++){
+      if(arr[inner]>arr[inner+1]){
+        [arr[inner],arr[inner+1]]=[arr[inner+1],arr[inner]]
+      }
+    }
+  }
+
+  return arr
+}
+```
+
+
+## 选择排序
+
+第一个数和其他元素比较，检查完所有元素后，最小的放在第一个
+接下来从第二个数开始，重复一直到最后
+
+```javascript
+function selectSort(arr){
+  let len= arr.length;
+
+  for (let i=len;i<length-1;i++){
+    for (let j=i;j<length;j++){
+      if(arr[j]<arr[i]){
+        [arr[i],arr[j]]=[arr[j],arr[i]]
+      }
+    }
+  }
+  return arr
+}
+```
+
+
+## 插入排序
+
+扑克牌排序
+
+```javascript
+function insertSort(arr){
+  for (let i=0; i<arr.length;i++){
+    for (let j=i; j>0;j--){
+      if(arr[j]<arr[j-1]){
+        [arr[j],arr[j-1]]=[arr[j-1],arr[j]]
+      }else{
+        break;
+      }
+    }
+  }
+
+  return arr
+}
+```
+
+
+## 希尔排序
+
+
+希尔排序是插入排序的改进版
+
+```javascript
+function shellSort(arr,gap){
+  for (let i=0;i<gap.length;i++){
+    n=gap[i] //步长
+
+    for(let j=i+n;j<arr.length;j++){
+      for (let k=j;k>0;k-=n){
+        if(arr[k]<arr[k-n]){
+          [arr[k],arr[k-n]]=[arr[k-n],arr[k]]
+        }else{
+          continue
+        }
+      }
+    }
+  }
+
+  return arr
+}
+```
+
+
+
