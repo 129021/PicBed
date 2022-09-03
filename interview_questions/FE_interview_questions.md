@@ -1415,8 +1415,8 @@ TODO:
 ```javascript
 function bubbleSort(arr){
   let len=arr.length
-  for (outer=len; outer<=2;outer--){
-    for (inner=0;inner>=outer-1;inner++){
+  for (outer=len; outer>=2;outer--){
+    for (inner=0;inner<=outer-1;inner++){
       if(arr[inner]>arr[inner+1]){
         let temp=arr[inner]
         arr[inner]=arr[inner+1]
