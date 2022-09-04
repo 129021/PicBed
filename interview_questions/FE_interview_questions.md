@@ -1516,3 +1516,151 @@ function shellSort(arr,gap){
 
 
 
+## 箭头函数与普通函数的区别
+
+1. 箭头函数的写法更加简洁：
+   - 如果没有参数，直接写一个空括号即可
+   - 如果有一个参数，可以直接写这个参数，省略掉括号
+   - 如果函数体的返回值只有一句话，可以直接省略掉花括号
+   - 如果函数体没有返回值且函数体只有一句话，可以在这个语句前加一个`void`关键字
+2. 箭头函数没有自己的this
+   - 箭头函数不会创建自己的this，箭头函数的this始终指向箭头函数在定义时其所在作用域的this，并且不会改变
+3. 箭头函数的this指向永远不会改变
+4. `call()`,`apply()`,`bind()`方法不能改变箭头函数的this
+5. 箭头函数不能被当做构造函数使用
+6. 箭头函数没有自己的prototype
+7. 箭头函数没有自己的arguments
+8. 箭头函数不能用作Generator函数，不能使用yeild关键字
+
+## new操作符做了什么
+1. 创建一个空对象 
+2. 设置原型，将对象的原型设置为构造函数的prototype
+3. 让函数的this指向这个对象，并执行构造函数的代码（为这个对象添加属性方法）
+4. 判断函数的返回值类型，如果是值类型，就返回创建的对象，如果是引用类型，就返回这个引用类型的对象
+
+
+## 闭包是什么作用是什么
+
+> 当一个内部函数被调用，就会形成闭包，闭包就是能够访问其他函数内部变量的函数
+
+作用：
+
+局部变量无法共享和长期保存，全局变量容易造成变量污染，我们希望一种机制既可以保存变量并且不会污染全局变量
+
+
+
+## promise是什么
+
+Promise是一种异步编程的解决方案，从语法上讲是一个对象，可以获取异步操作的消息；从本意上讲，它是一个承诺，承诺过一段时间会返回给你一个结果。promise有三种状态：pending,fulfilled,rejected.状态一旦改变，就不会再变。创建promise实例会会立即执行
+
+TODO:
+```javascript
+
+```
+
+## Set和Map有什么区别
+
+- Map是键值对，Set是值的集合
+- Map可以通过get方法获取值，set不能
+- 都能通过迭代器`for ...of`遍历 
+- Set的值是唯一的，可以做数组去重，Map由于格式没有限制，可以做数据存储
+
+## forEach和map有什么区别
+
+- forEach()方法会针对每一个元素执行提供的函数，该方法没有返回值，是否会改变原数组取决于数组元素是基本数据类型还是引用数据类型
+- map方法不会改变原数组的值，返回一个新的数组，新数组中的值为原数组调用函数处理后的值
+
+
+
+## 为什么Vuex的mutation中不能做异步操作
+
+action支持异步，提交给mutation同步实现，这样可以方便跟踪每一个装态的变化。每个mutation执行完成后都会对应到一个新的状态变更，这样devtools都可以打个快照存下来，然后可以实现time-travel，如果mutation是异步的话，就没有办法知道状态是何时更新的，无法进行很好的状态的跟踪，给调试带来困难
+
+## loader和pulgin有什么区别
+
+- loader译为加载器，webpack将一切文件视为模块，但是webpack原生只能加载和解析js文件，如果想让其他文件也打包的话，就需要loader，loader可以扩展webpack的能力，使webpack具有加载和解析其他非js文件的能力。
+- plugin译为插件，可以拓展webpack的功能，让webpack具有更强的灵活性。webpack在运行的生命周期中会广播出很多事件，plugin可以监听这些事件，在合适的时机通过webpack提供的API来改变webpack的结果
+
+
+## TCP 和UDP有什么区别
+
+--- | UDP | TCP 
+---| --- | --- 
+是否连接 | 无连接 | 面向连接
+是否可靠 | 不可靠传输，不使用流量控制和拥塞控制 | 可靠传输，使用流量控制和拥塞控制
+连接对象个数 | 一对一，一对多，多对一，多对多 | 一对一
+传输方式 | 面向报文 | 面向字节流
+首部开销 | 首部开销小仅8字节 | 首部开销大，最小20字节，最大60字节
+适用场景 | 实时应用 | 可靠传输的应用，比如文件传输
+
+
+## 计算属性computed和watch有什么区别
+
+- computed： 计算属性，依赖其他属性值。具有缓存性，只有当它依赖的属性值发生变化，且在下一次调用computed的时候computed的值才会重新计算
+- watch：是一个侦听器，更多的是一个观察的作用，无缓存性，类似于一些数据的监听回调，当数据发生变化的时候就会执行回调
+
+## 组件传值
+
+1. 子传父
+2. 父传子
+3. eventbus
+4. ref/$refs
+5. $parent/$children
+6. $attrs/$listeners
+7. 依赖注入（provide/inject)
+
+## flex: 1，flex: auto，flex: 0，flex: none的区别吗？
+TODO:
+https://juejin.cn/post/6971010647492395044
+
+https://juejin.cn/post/6844904182156115982
+
+## 怎么解决白屏问题
+1. 加loading
+2. 加骨架屏
+
+
+## 浏览器的性能监控
+TODO:
+
+https://link.juejin.cn/?target=https%3A%2F%2Fblog.csdn.net%2Fqq_29438877%2Farticle%2Fdetails%2F103998284
+
+## 父子组件生命周期钩子函数执行顺序
+1. 加载渲染过程
+   父组件beforeCreate-> 父组件created -> 父beforeMount - > 子 beforeCreate -> 子created -> 子 beforeMount -> 子 mounted -> 父mounted
+2. 子组件更新过程：
+    父beforeUpdate -> 子beforeUpdate -> 子updated -> 父updated
+3. 父组件更新过程：
+    父beforeUpdate -> 父updated
+4. 销毁过程
+    父beforeDestory -> 子beforeDestory -> 子 destoryed -> 父destoryed
+
+## 判断数据类型
+
+- typeOf : 引用数据类型除Function会被判定为Function外，其他的引用数据类型都会被判断为Object；null会被判定为Object，基本数据类型会判断正确，所以typeof可以被用来判断除null以外的基本数据类型
+- instanceof ： 智能判断引用数据类型，不能判断基本数据类型
+- constructor: 如果创建一个对象来改变它的原型，constructor就不能判断数据类型了
+- Object.prototype.toString.call()
+
+
+
+## data为什么是一个函数而不是一个对象
+
+> JavaScript中的对象是引用类型的数据，当多个实例引用同一个对象时，只要一个实例对这个对象进行操作，其他实例中的数据也会发生变化。而在Vue中，我们更多的是想要复用组件，那就需要每个组件都有自己的数据，这样组件之间才不会相互干扰。所以组件的数据不能写成对象的形式，而是要写成函数的形式。数据以函数返回值的形式定义，这样当我们每次复用组件的时候，就会返回一个新的data，也就是说每个组件都有自己的私有数据空间，它们各自维护自己的数据，不会干扰其他组件的正常运行。
+
+
+
+## 类数组转为数组
+
+- 通过Array.from()方法实现转换
+   Array.from(arrayLike)
+- 通过借用Array原型上的slice方法来实现
+   Array.prototype.slice.call(arrayLike)
+- 通过借用Array原型上的splice来实现
+   Array.prototype.splice.call(arrayLike,0)
+- 通过apply借用数组的concat方法来实现：
+   Array.prototype.concat.apply([],arrayLike)
+
+
+## 数组去重
+
