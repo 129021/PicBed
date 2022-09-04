@@ -1664,3 +1664,8 @@ https://link.juejin.cn/?target=https%3A%2F%2Fblog.csdn.net%2Fqq_29438877%2Fartic
 
 ## 数组去重
 
+
+
+
+
+## js继承方式
