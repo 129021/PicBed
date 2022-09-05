@@ -244,5 +244,65 @@ js存在一定的问题：js的键（key）都是字符串类型，或者会转�
 字典是以map来表示的，map的键不会转换类型
 
 
+区别：
+1. 寻找value
+   - 字典如果要找key对应的value需要遍历key，
+   - 那么想要省去遍历的过程，需要用哈希表来表示
+2. 排列顺序
+   - 字典是根据添加的顺序进行排列的
+   - 哈希表不是添加的顺序进行排列的
 
-    
+
+
+
+#### LeetCode1:两数之和
+
+```javascript
+var twoSum=function(nums,target){
+    for (let i = 0 ;i<nums.length;i++){
+        let map=new Map()
+        let num=target-nums[i]
+
+        if(map.has(num)){
+            return [map.get(num),i]
+        }else{
+            map.set(nums[i],i)
+        }
+    }
+}
+```
+
+
+
+
+#### LeetCode217:重复元素
+
+数组中有重复元素返回true,没有返回false
+
+```javascript
+var containsDuplicate=function(nums){
+    let set=new Set()
+    for (let num of nums){
+        if (set.has(num)){
+            return true
+        }else{
+            set.add(num)
+        }
+    }
+
+    return false
+}
+```
+
+
+
+
+#### LeetCode349:两个数组的交集
+
+```javascript
+var intersection = function (num1,nums2){
+    let set=new Set(nums2)
+
+    return [...new Set(num1)].filter(item=>set.has(item))
+}
+```
