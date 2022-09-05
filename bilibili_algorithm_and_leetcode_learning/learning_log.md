@@ -127,4 +127,122 @@ js中的原型链原理就是链表结构
 
 
 
+#### instanceof 原理
 
+利用原型链的原理
+
+```javascript
+let myInstanceof=(target,obj)=>{
+while(target){
+    if(target==obj.prototype){
+        return true
+    }
+
+    target=target.__proto__
+}
+
+return false
+}
+```
+
+#### LeetCode141:环形链表
+
+
+```javascript
+var hasCycle(head){
+    let f=head, s=head
+    while(f!==null && f.next!==null){
+        s=s.next;
+        f=f.next.next;
+        if( s=f) return true
+    }
+    return false
+}
+```
+
+
+#### LeetCode237:删除链表中的节点
+
+```javascript
+
+var deleteNode=function (node){
+    node.val=node.next.val
+    node.next=node.next.next
+}
+
+```
+
+
+#### LeetCode83：删除排序链中的重复元素
+
+如果当前的节点有next，将当前节点的val值与next节点的val值进行对比，如果两个节点的val相同的话，就删除第一个节点，如果不同，就继续往下对比
+
+
+```javascript
+var deleteDuplicates=function(head) {
+    if(!head){
+        return head
+    }
+
+
+let cur=head
+while(cur.next){
+    if(cur.val==cur.next.val){
+        cur.next=cur.next.next
+    }else{
+        cur=cur.next
+    }
+}
+
+  return head
+
+}
+```
+
+
+#### LeetCode206：翻转列表
+
+
+1-> 2 -> 3 -> 4 -> 5 
+5 -> 4 -> 3 -> 2 -> 1
+
+```javascript
+var reverseList=function(head){
+    let prev= null
+    let curr=head
+ while (curr){
+    let next= curr.next
+    curr.next=prev
+    prev=curr;
+    curr=next
+ }
+
+
+ return prev
+}
+```
+
+
+#### 数组和链表的区别
+
+1. 元素之间的联系
+   - 数组通过下标联系在一起
+   - 链表通过next指针联系在一起
+2. 数据插入
+   - 数组如果在中间插入新的元素，其他元素会重新计算
+   - 链表不会重新计算
+3. 查找
+   - 数组：通过下标进行查找
+   - 链表： 每次查找都需要从头开始找
+
+## 字典 & 哈希表
+
+字典是键值对存储，有点类似于js的对象
+
+js存在一定的问题：js的键（key）都是字符串类型，或者会转换为字符串类型
+
+字典是以map来表示的，map的键不会转换类型
+
+
+
+    
