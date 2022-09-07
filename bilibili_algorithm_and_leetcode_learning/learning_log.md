@@ -258,9 +258,10 @@ js存在一定的问题：js的键（key）都是字符串类型，或者会转�
 #### LeetCode1:两数之和
 
 ```javascript
-var twoSum=function(nums,target){
+var twoSum=function(nums,target){ 
+    let map=new Map()
     for (let i = 0 ;i<nums.length;i++){
-        let map=new Map()
+       
         let num=target-nums[i]
 
         if(map.has(num)){
@@ -306,3 +307,103 @@ var intersection = function (num1,nums2){
     return [...new Set(num1)].filter(item=>set.has(item))
 }
 ```
+
+
+
+#### 字符串中出现次数最多的字符，并统计字数
+
+```javascript
+function MostString(s){
+    let maxNum=0
+    let maxStr-''
+    let map=new Map()
+
+    for(let item of s){
+map.set(item,(map.get(item) || 0)+1)
+    }
+
+
+    for (let [key,val] of map){
+        if(val>maxNum){
+            maxStr=key
+            maxNum=val
+        }
+    }
+
+    return [maxStr,maxNum]
+}
+```
+
+
+
+#### LeetCode1207:独一无二的出现次数
+
+
+```javascript
+var uniqueOccurrences = function(arr) {
+    let map=new Map()
+
+    for (let item of arr ){
+        if (map.has(item)){
+            map.set(item,map.get(item)+1)
+        }else{
+            map.set(item,1)
+        }
+
+    }
+
+
+
+    let set =new Set()
+
+    for (let [key,value] of map){
+        set.add(value)
+    }
+
+
+    return set.size==map.size
+}
+
+```
+
+
+
+#### LeetCode3:无重复字符的最长子串
+
+
+```javascript
+
+// 滑动窗口思想
+var lengthOfLongestSubstring=function(s){
+
+    let map=new Map() 
+
+    let left=0 //左指针
+
+    let num=0 //记录的最长无重复子串的数量
+
+    for (let i =0 i<s.length; i++){
+        if(map.has(s[i]) && map.get(s[i]) >=left){
+            left=map.get(s[i])+1
+        }else{
+
+            num=Math.max(num,i-l+1)
+            map.set(s[i],i)
+        }
+    }
+
+
+
+
+    return num
+
+}
+```
+
+
+
+## 树
+
+树是一种分层数据的抽象模型
+
+
