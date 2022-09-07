@@ -408,9 +408,284 @@ var lengthOfLongestSubstring=function(s){
 
 ### 深度优先遍历（搜索）
 
+从根出发，尽可能深的搜素树的节点
+
+
+技巧：
+1. 访问根节点
+2. 对于根节点的children挨个进行深度优点遍历
 
 
 ### 广度优先遍历（搜索）
 
 
+从根出发，优先访问离根节点最近的节点
+
+技巧：
+1. 新建一个队列，把根节点入队
+2. 把队头出队
+3. 把对头的children挨个入队
+4. 重复2和3步，直到队列为空
+
+
+### 二叉树
+
+#### LeetCode144：二叉树的前序遍历
+
+前序遍历：根左右
+
+```javascript
+// 递归的形式
+var preorderTraversal=function (root){
+
+    let arr=[]
+
+    let fun=(node)=>{
+        if(node){
+            // 把根节点放进去
+            arr.push(node.val)
+
+            // 遍历左子树
+            fun(node.left)
+
+            // 遍历右子树
+            fun(node.right)
+        }
+    }
+
+
+    fun(root)
+
+    return arr
+
+}
+
+
+
+// 栈的形式
+var preorderTraversal=function (root){
+
+    if(!root) return []
+
+    let arr=[]
+
+    // 根节点入栈
+    let stack=[root]
+
+    while(stack.length){
+        // 出栈
+        let o =stack.pop()
+
+        arr.push(o.val)
+
+        o.right&& stack.push(o.right)
+        o.left&& stack.push(o.left)
+
+
+    }
+
+    return arr
+    
+}
+```
+
+
+
+
+#### LeetCode94:二叉树的中序遍历
+
+左根右
+
+递归版本
+```javascript
+
+
+var inorderTraversal=function(root){
+
+    let arr=[]
+
+    let fun=(node)=>{
+        if(!node) return []
+
+        fun(node.left)
+        arr.push(node.val)
+        fun(node.right)
+
+    }
+
+fun(root)
+return arr
+}
+```
+
+
+
+非递归版本
+
+```javascript
+var inorderTraversal=function (root) {
+
+    let arr=[]
+    let stack=[]
+    let o=root
+
+    while(stack.length || o){
+        wihle(o){
+            stack.push(o)
+            o=o.left
+        }
+
+        const n=stack.pop()
+        arr.push(n.val)
+        o=o.right
+    }
+
+    return arr
+  }
+```
+
+
+
+
+
+
+
+
+#### 后序遍历
+
+左右根
+
+
+
+递归版：
+
+```javascript
+var postorderTraversal=function(root){
+    let arr=[]
+
+    let fun=(node)=>{
+        if(node){
+            fun(node.left)
+            fun(node.right)
+            arr.push(node.val)
+        }
+    }
+
+
+    return arr
+
+}
+```
+
+
+非递归版：
+
+```javascript
+var postorderTraversal=function(root){
+    if( ! root) return []
+    let arr=[]
+    let stack=[root]
+
+    while(stack.length){
+        const o=stack.pop()
+        arr.unshift(o.val)
+        o.left&& atack.push(o.left)
+        o.right && stack.push(o.right)
+    }
+    return arr
+}
+```
+
+
+
+#### LeetCode111:二叉树的最小深度
+
+
+```javascript
+var minDepth=function(root){
+    if(!root) return 0
+
+    const stack=[[root,1]]
+    while(stack.length){
+        const [o,n]=stack.shift()
+
+        if(!o.left && ! o.right){
+            return n
+        }
+
+        if(o.left) stack.push([o.left,n+1])
+        if(o.right) stack.push([o.right,n+1])
+    }
+}
+```
+
+
+#### LeetCode104:二叉树的最大深度
+
+
+```javascript
+
+var maxDepth=function(root){
+    if(!root) return 0
+    const stack=[root]
+    let num=0
+
+    while(stack.length){
+        let len=stack.length
+
+        num++
+
+        while(len--){
+            const o=stack.shift()
+
+            o.left && stack.push(o.left)
+            o.right && stack.push(o.right)
+        }
+    }
+
+
+    return num
+}
+```
+
+
+### LeetCode226:翻转二叉树
+
+
+```javascript
+var inertTree=function(root){
+
+    if(!root) reutrn 
+
+    let temp= root.left;
+    root.left=root.right;
+    root.right=temp;
+
+    inertTree(root.left)
+    inertTree(root.right)
+
+    return root
+
+}
+```
+
+
+
+#### LeetCode100:相同的树
+
+
+```javascript
+var isSameTree=function (p,q){
+    if(p===null && q=== null) return true
+    if(p===null || q=== null) return false
+    if(p.val!== q.val) return false
+
+  return   isSameTree(p.left,q.left) && isSameTree(p.right,q.right)
+}
+```
+
+
+
+
+## 堆
 
