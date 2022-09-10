@@ -814,7 +814,74 @@ function mergeSort(arr){
 
 
 
-### 二分搜索
+### LeetCode704:二分搜索
+
+
+<!-- 两参数版本 -->
+```javascript
+
+function binarySearch(arr,target){
+    let start=0
+    let end=arr.length-1
+    while(start<=end){
+        let mid=Math.floor((start+end)/2)
+        if(arr[mid]==target) return mid
+        if(arr[mid]> target) {
+            end=mid-1
+        }
+        if(arr[mid]<target) {
+            start=mid+1
+        }
+    }
+
+    return -1
+}
+
+```
+
+
+<!-- 四参数版本 -->
+```javascript
+function binarySearch(arr,target,start=0,end=target.length-1){
+    let mid=Math.floor((start+end)/2)
+    if(arr[mid]==target) return mid
+    if(start>=end) return -1
+    if (arr[mid] < target) {
+        return binarySearch(arr,target,mid+1,end)
+    }else{
+        return binarySearch(arr,target,start,mid-1)
+    }
+}
+```
+
+
+
+### 分治
+
+#### LeetCode374：猜数字大小
+
+
+```javascript
+var guessNumber=function(n){
+    const rec=(low,high)=>{
+        const mid=Math.floor((low+high)/2);
+
+        const res = guess(mid);
+        if(res==0){
+            return mid
+        }else if(res==1){
+            return rec(mid+1,high)
+        }else{
+            return rec(1,mid-1)
+        }
+    }
+
+    return rec(1,n)
+}
+```
+
+
+#### LeetCode169:多数元素
 
 ```javascript
 
