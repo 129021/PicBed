@@ -703,6 +703,119 @@ var isSameTree=function (p,q){
 - 完全二叉树要求叶子结点从左往右填满，才能开始填充下一层，这就保证了不需要对数组整体进行大片的移动，这也是随机存储结果（数组）的短板；删除一个元素之后，整体前移是比较费时的。这个特性也导致堆在删除元素的时候，要把最后一个叶子结点补充到树根结点的缘故
 
 
-- 二叉树像树的样子我可以理解，但将他们安排在数组里的化，通过当前下标怎么就能找到父节点和子节点的呢？
+二叉树像树的样子我可以理解，但将他们安排在数组里的化，通过当前下标怎么就能找到父节点和子节点的呢？
   
 
+- 寻找左子树：2*index+1
+- 寻找右子树：2*index+2
+- 寻找父节点：(index-1)/2
+
+
+
+
+#### 最小堆
+
+
+```javascript
+
+class MinHead{
+    constructor(){
+        this.heap=[]
+    }
+
+    // 添加元素
+    insert(value){
+        this.heap.push(value)
+        
+    }
+}
+```
+
+#### LeetCode215：数组中的第k个最大元素
+
+
+```javascript
+
+```
+
+
+
+## 排序算法
+
+
+### 冒泡排序
+
+```javascript
+function bubbleSort(arr){
+    for (let i=0;i<arr.length-1;i++){
+        for (let j=0;j<arr.length-1-i;j++){
+            if(arr[j]>arr[j+1]){
+                [arr[j],arr[j+1]]=[arr[j+1],arr[j]]
+            }
+        }
+    }
+
+    return arr
+}
+```
+
+
+
+### 选择排序
+
+
+```javascript
+function chooseSort(arr){
+
+    for (let i=1;i<arr.length;i++)a[
+        for (let j=i;j>0;j--){
+            if(arr[j]<arr[j-1]){
+                [arr[j],arr[j-1]]=[arr[j-1],arr[j]]
+            }
+        }
+
+    ]
+
+    return arr
+
+}
+```
+
+
+### 归并排序
+
+```javascript
+function mergeSort(arr){
+    if (arr.length<2) return arr
+    let mid=Math.floor(arr.length/2)
+
+    
+
+    function merge(leftArr,rightArr){
+        console.log(leftArr,rightArr);
+        let resArr=[]
+        while(leftArr.length && rightArr.length){
+            resArr.push(leftArr[0]<=rightArr[0] ?resArr.shift() : rightArr.shift)
+
+        }
+
+        return resArr.concat(leftArr).concat(rightArr)
+
+
+
+    }
+
+    return merge(mergeSort(arr.slice(0,mid)),mergeSort(arr.slice(mid)))
+    
+
+    
+}
+```
+
+
+
+### 二分搜索
+
+```javascript
+
+```

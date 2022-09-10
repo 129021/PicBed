@@ -1383,6 +1383,7 @@ TODO:
     var mid = Math.floor(arr.length / 2)
 
     var midValue = arr.splice(mid, 1) //找到中间数的值
+    
 
 
     for (var i = 0; i < arr.length; i++) {
@@ -1442,7 +1443,9 @@ function easyBubbleSort(arr){
     }
   }
 
-  return arr
+  return left=[],
+  right=[],
+  cur=arr.splice()
 }
 ```
 
